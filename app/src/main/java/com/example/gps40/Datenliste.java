@@ -10,14 +10,16 @@ import java.util.List;
 
 public class Datenliste {
 
-   public ArrayList<Haltestellen_Koordinaten> list =new ArrayList<Haltestellen_Koordinaten>();
+    public ArrayList<Haltestellen_Koordinaten> list =new ArrayList<Haltestellen_Koordinaten>();
+    getCSV csv;
 
     public Datenliste(){
         ausfuellen();
     }
 
     public void ausfuellen(){
-
+        csv = new getCSV();
+        Log.d("","Test");
         Haltestellen_Koordinaten aachenerStrGuertel = new Haltestellen_Koordinaten("Aachener Str./Gürtel", 50.937562, 6.908607);
         Haltestellen_Koordinaten ackerstr = new Haltestellen_Koordinaten("Ackerstr.", 50.9608618713, 7.0172470209);
         Haltestellen_Koordinaten AdolfMenzelStr = new Haltestellen_Koordinaten("Adolf-Menzel-Str.", 50.8805441765, 7.0155509635);
@@ -48,11 +50,11 @@ public class Datenliste {
         Haltestellen_Koordinaten AmHetzepetsch = new Haltestellen_Koordinaten("Am Hetzepetsch", 51.0143410868, 6.9128171319);
         Haltestellen_Koordinaten AmHochkreuz = new Haltestellen_Koordinaten("Am Hochkreuz", 50.9028552593, 7.0604243764);
         Haltestellen_Koordinaten AmKreuzweg = new Haltestellen_Koordinaten("Am Kreuzweg", 50.8685835551, 6.9216351208);
-        Haltestellen_Koordinaten Adolf = new Haltestellen_Koordinaten("Adolf", 9249, 400);
+        Haltestellen_Koordinaten Adolf = new Haltestellen_Koordinaten("Adolf", 50.98, 7.09);
 
 
-        list.add(aachenerStrGuertel );
-        list.add(ackerstr);
+
+
         list.add(AdolfMenzelStr);
         list.add(AdrianMellerStr);
         list.add(AeltgenDuenwaldStr);
@@ -81,9 +83,9 @@ public class Datenliste {
         list.add(AmHetzepetsch);
         list.add(AmHochkreuz);
         list.add(AmKreuzweg);
-        list.add(Adolf);
-
-
+        //list.add(Adolf);
+        list.add(aachenerStrGuertel);
+        list.add(ackerstr);
 
 
 
@@ -94,36 +96,41 @@ public class Datenliste {
 
 
 
-    public static double distanceInKm(double lat1, double lon1, double lat2, double lon2) {
-        int radius = 0;
+    public  double distanceInKm(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371; // Radius of the earth
 
-        double lat = Math.toRadians(lat2 - lat1);
-        double lon = Math.toRadians(lon2- lon1);
-
-        double a = Math.sin(lat / 2) * Math.sin(lat / 2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.sin(lon / 2) * Math.sin(lon / 2);
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double d = radius * c;
+        double distance = R * c; // convert to meters
 
-        return Math.abs(d);
 
+        distance = Math.pow(distance, 2);
+
+        return Math.sqrt(distance);
     }
 
-    public void berrechnung(){
-        String ausgabenhaltestelle1 = "Achner Straße";
-        double lat1;
-        double lon1;
-        double lat2;
-        double lon2;
-
-        for(int i=0; i < list.size();i++){
-
-
-
-
-
+    public String berechnung(double lat1, double lon1){
+        Log.d("",Double.toString(lat1) + "\n" + Double.toString(lon1) );
+        Haltestellen_Koordinaten tmp = list.get(0);
+        Haltestellen_Koordinaten nearest = tmp;
+        double tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
+        Log.d("", "" + tmpD);
+        Log.d("", "Test   " + list.size());
+        for(int i=0; i < list.size(); i++){
+            Log.d("",Double.toString(lat1) + "  " + Double.toString(lon1) + "\n" + tmp.getName() + "  " + Double.toString(tmp.getLat()) + "  " + Double.toString(tmp.getLon()));
+            tmp = list.get(i);
+            if(distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon()) < tmpD){
+                tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
+                nearest = tmp;
+            }
         }
-
+        return nearest.getName();
     }
+
 
 
 }
