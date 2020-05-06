@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         new LocationControler().updateGPS();
     }
-//dsfdsf
 
 
+
+  public static void main(String[] args){
+      LocationControler test = new LocationControler();
+  }
 }

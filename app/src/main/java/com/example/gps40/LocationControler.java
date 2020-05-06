@@ -30,7 +30,8 @@ public class LocationControler extends AppCompatActivity {
     private static final int PERMISSION_FINE_LOCATION = 99;
     public TextView  text_addresse;
     TextView ausgabe1;
-
+    public double lathandy;
+    public double lonhandy;
     public Switch sw_locationsupdates;
 
     //wird die location geortet, ja nein?
@@ -154,8 +155,7 @@ public class LocationControler extends AppCompatActivity {
         }
 
     }
-    public double lathandy;
-    public double lonhandy;
+
 
     public void updateUIValues(Location location) {
         //Texte werden geupdated.
