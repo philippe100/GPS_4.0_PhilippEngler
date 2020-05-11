@@ -23,6 +23,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -80,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 Location location = locationResult.getLastLocation();
-                updateUIValues(location);
+                try {
+                    updateUIValues(location);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
@@ -143,7 +149,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Location location) {
                     //Elaubnis wurde erteilt
-                    updateUIValues(location);
+                    try {
+                        updateUIValues(location);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -158,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
     public double lathandy;
     public double lonhandy;
 
-    public void updateUIValues(Location location) {
+    public void updateUIValues(Location location) throws IOException {
         Datenliste datenliste = new Datenliste();
         //Texte werden geupdated.
         this.lathandy = location.getLatitude();
