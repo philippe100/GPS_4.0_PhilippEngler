@@ -24,7 +24,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 
@@ -58,13 +57,6 @@ public class MainActivity extends AppCompatActivity {
         ausgabe1 = findViewById(R.id.ausgabe1);
 
 
-        //Datenliste datenliste = new Datenliste();
-
-        // for(int i=0; i < datenliste.list.size();i++){
-
-        //     ausgabe1.append(datenliste.list.get(i).getName()+ "\n"+ datenliste.list.get(i).getLat()+ "\n"+ datenliste.list.get(i).getLon()+ "\n");
-
-        // }
 
 
 
@@ -169,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     public double lonhandy;
 
     public void updateUIValues(Location location) throws IOException {
-        Datenliste datenliste = new Datenliste();
+        Datenberechnung datenliste = new Datenberechnung();
         //Texte werden geupdated.
         this.lathandy = location.getLatitude();
         this.lonhandy = location.getLongitude();

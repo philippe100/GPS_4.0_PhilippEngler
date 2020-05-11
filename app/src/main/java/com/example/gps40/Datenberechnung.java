@@ -2,14 +2,15 @@ package com.example.gps40;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Datenliste {
+public class Datenberechnung {
 
     private ArrayList<Haltestellen_Koordinaten> list =new ArrayList<Haltestellen_Koordinaten>();
-    private GetCSV csv;
+    private CreateListe csv;
 
-    public Datenliste() throws IOException {
-        csv = new GetCSV();
+    public Datenberechnung() throws IOException {
+        csv = new CreateListe();
         ausfuellen();
     }
 
@@ -55,14 +56,17 @@ public class Datenliste {
         double tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
         System.out.println(", " + tmpD);
         for(int i=0; i < list.size(); i++){
-            System.out.println("" + Double.toString(lat1) + "  " + Double.toString(lon1) + "\n" + tmp.getName() + "  " + Double.toString(tmp.getLat()) + "  " + Double.toString(tmp.getLon()));
             tmp = list.get(i);
-            if(distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon()) < tmpD){
+            double tmpanstand = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
+            tmp.setAbstand(tmpanstand);
+            if( tmpanstand < tmpD){
                 tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
                 nearest = tmp;
+
             }
         }
-        return nearest.getName();
+
+        return nearest.getName() + "  " +  + nearest.getIndex();
     }
 
 
