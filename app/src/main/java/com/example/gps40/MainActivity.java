@@ -166,7 +166,11 @@ public class MainActivity extends AppCompatActivity {
         this.lathandy = location.getLatitude();
         this.lonhandy = location.getLongitude();
         ausgabe1.setText(String.valueOf(lathandy) + "  " + String.valueOf(lonhandy) + "\n");
-        ausgabe1.append(datenliste.berechnung(lathandy, lonhandy));
+        Haltestellen_Koordinaten[] naehste = datenliste.berechnung(lathandy, lonhandy);
+        for(int i = 0; i<5; i++){
+            ausgabe1.append(naehste[i].getName() + "\n");
+        }
+
         Geocoder geocoder = new Geocoder(MainActivity.this);
         try {
 
