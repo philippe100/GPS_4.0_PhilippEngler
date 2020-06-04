@@ -2,7 +2,6 @@ package com.example.gps40;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Datenberechnung {
 
@@ -49,24 +48,32 @@ public class Datenberechnung {
         return Math.sqrt(distance);
     }
 
-    public String berechnung(double lat1, double lon1){
-        System.out.println("" + Double.toString(lat1) + "\n" + Double.toString(lon1) );
+    public Haltestellen_Koordinaten[] berechnung(double lat1, double lon1){
+        Haltestellen_Koordinaten[] groesste = new Haltestellen_Koordinaten[5];
         Haltestellen_Koordinaten tmp = list.get(0);
-        Haltestellen_Koordinaten nearest = tmp;
-        double tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
-        System.out.println(", " + tmpD);
-        for(int i=0; i < list.size(); i++){
+        groesste[0] = tmp;
+
+        groesste[0].setAbstand(distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon()));
+        for(int i=0; i < list.size(); i++) {
             tmp = list.get(i);
-            double tmpanstand = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
-            tmp.setAbstand(tmpanstand);
-            if( tmpanstand < tmpD){
-                tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
-                nearest = tmp;
-
+            tmp.setAbstand(distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon()));
+            if (tmp.getAbstand() < groesste[0].getAbstand()) {
+                groesste[4] = groesste[3];
+                groesste[3] = groesste[2];
+                groesste[2] = groesste[1];
+                groesste[1] = groesste[0];
+                groesste[0] = tmp;
+            } else if (tmp.getAbstand() < groesste[1].getAbstand()) {
+                groesste[4] = groesste[3];
+                groesste[3] = groesste[2];
+                groesste[2] = groesste[1];
+                groesste[1] = tmp;
             }
+            /**
+             * Muster weiterführen bis du auf else if(tmp.getAbstand() < groesste[4].getAbstand()) kommst ;) wenn du nicht weißt wie du das machen sollst dann machen wir das zusammen.
+             */
         }
-
-        return nearest.getName() + "  " +  + nearest.getIndex();
+        return groesste;
     }
 
 

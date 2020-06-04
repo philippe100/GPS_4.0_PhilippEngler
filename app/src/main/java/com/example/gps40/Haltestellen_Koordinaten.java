@@ -9,6 +9,7 @@ public class Haltestellen_Koordinaten {
     private double lonstation;
     private int index;
     private double abstand;
+    private String link;
 
     public Haltestellen_Koordinaten(int index, String name, double latstation, double lonstation){
 
@@ -17,7 +18,7 @@ public class Haltestellen_Koordinaten {
         this.lonstation = lonstation;
         this.index = index;
         abstand = 0.0;
-
+        link = "https://www.kvb.koeln/haltestellen/overview/" + index + "/";
 
     }
 
@@ -28,6 +29,8 @@ public class Haltestellen_Koordinaten {
     public double getAbstand() {
         return abstand;
     }
+
+    public String getLink(){return link;}
 
     public double getLat() {
         return latstation;
