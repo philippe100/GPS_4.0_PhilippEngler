@@ -49,27 +49,26 @@ public class Datenberechnung {
         return Math.sqrt(distance);
     }
 
-    public String berechnung(double lat1, double lon1){
-        System.out.println("" + Double.toString(lat1) + "\n" + Double.toString(lon1) );
+    public String berechnung(double lat1, double lon1) {
+        System.out.println("" + Double.toString(lat1) + "\n" + Double.toString(lon1));
         Haltestellen_Koordinaten tmp = list.get(0);
         Haltestellen_Koordinaten nearest = tmp;
         double tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
         System.out.println(", " + tmpD);
-        for(int i=0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             tmp = list.get(i);
             double tmpanstand = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
             tmp.setAbstand(tmpanstand);
-            if( tmpanstand < tmpD){
+            if (tmpanstand < tmpD) {
                 tmpD = distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon());
                 nearest = tmp;
 
             }
         }
 
-        return nearest.getName() + "  " +  + nearest.getIndex();
+        return nearest.getName() + "  " +  nearest.getIndex();
+
     }
-
-
 
 }
 
