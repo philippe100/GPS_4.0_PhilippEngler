@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_FINE_LOCATION = 99;
     public TextView  text_addresse;
     TextView ausgabe1;
-    Button n1,n2,n3,n4,n5;
+    Button n1,n2,n3,n4,n5,n6,n7,n8,n9,n10;
     public Haltestellen_Koordinaten[] naehste;
 
     public Switch sw_locationsupdates;
@@ -68,10 +68,11 @@ public class MainActivity extends AppCompatActivity {
         n3 = findViewById(R.id.button8);
         n4 = findViewById(R.id.button7);
         n5 = findViewById(R.id.button6);
-
-
-
-
+        n6 = findViewById(R.id.button);
+        n7 = findViewById(R.id.button2);
+        n8 = findViewById(R.id.button3);
+        n9 = findViewById(R.id.button4);
+        n10 = findViewById(R.id.button11);
 
 
         //location Einstellungen
@@ -179,14 +180,38 @@ public class MainActivity extends AppCompatActivity {
         //Texte werden geupdated.
         this.lathandy = location.getLatitude();
         this.lonhandy = location.getLongitude();
-        ausgabe1.setText(String.valueOf(lathandy) + "  " + String.valueOf(lonhandy) + "\n");
+        ausgabe1.setText(String.valueOf(lathandy) + "         " + String.valueOf(lonhandy) + "\n");
         naehste = datenliste.berechnung(lathandy, lonhandy);
-        n1.setText(naehste[0].getName());
-        n2.setText(naehste[1].getName());
-        n3.setText(naehste[2].getName());
-        n4.setText(naehste[3].getName());
-        n5.setText(naehste[4].getName());
-
+        double eins = naehste[0].getAbstand();
+        eins = Math.round(eins * 1000)/1000.00;
+        n1.setText(naehste[0].getName() + "      " + eins + " km");
+        double zwei = naehste[1].getAbstand();
+        zwei = Math.round(zwei * 1000)/1000.00;
+        n2.setText(naehste[1].getName()+ "    " + zwei + " km");
+        double drei = naehste[2].getAbstand();
+        drei = Math.round(drei * 1000)/1000.00;
+        n3.setText(naehste[2].getName()+ "     " + drei + " km");
+        double vier = naehste[3].getAbstand();
+        vier = Math.round(vier * 1000)/1000.00;
+        n4.setText(naehste[3].getName()+ "     " + vier + " km");
+        double fünf = naehste[4].getAbstand();
+        fünf = Math.round(fünf * 1000)/1000.00;
+        n5.setText(naehste[4].getName()+ "    " + fünf + " km");
+        double sechs = naehste[5].getAbstand();
+        sechs = Math.round(sechs * 1000)/1000.00;
+        n6.setText(naehste[5].getName()+ "   " + sechs + " km");
+        double sieben = naehste[6].getAbstand();
+        sieben = Math.round(sieben * 1000)/1000.00;
+        n7.setText(naehste[6].getName()+ "   " + sieben + " km");
+        double acht = naehste[7].getAbstand();
+        acht = Math.round(acht * 1000)/1000.00;
+        n8.setText(naehste[7].getName()+ "    " + acht + " km");
+        double neun  = naehste[8].getAbstand();
+        neun = Math.round(neun * 1000)/1000.00;
+        n9.setText(naehste[8].getName()+ "    " + neun + " km");
+        double zehn = naehste[9].getAbstand();
+        zehn = Math.round(zehn * 1000)/1000.00;
+        n10.setText(naehste[9].getName()+ "    " + zehn + " km");
 
 
         Geocoder geocoder = new Geocoder(MainActivity.this);
@@ -225,6 +250,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void link5(View view){
         Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[4].getLink()));
+        startActivity(browserIntent);
+    }
+    public void link6(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[5].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link7(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[6].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link8(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[7].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link9(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[8].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link10(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[9].getLink()));
         startActivity(browserIntent);
     }
 
