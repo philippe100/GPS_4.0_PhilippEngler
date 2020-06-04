@@ -52,6 +52,10 @@ public class Datenberechnung {
         Haltestellen_Koordinaten[] groesste = new Haltestellen_Koordinaten[5];
         Haltestellen_Koordinaten tmp = list.get(0);
         groesste[0] = tmp;
+        groesste[1] = tmp;
+        groesste[2] = tmp;
+        groesste[3] = tmp;
+        groesste[4] = tmp;
 
         groesste[0].setAbstand(distanceInKm(lat1, lon1, tmp.getLat(), tmp.getLon()));
         for(int i=0; i < list.size(); i++) {
