@@ -72,10 +72,17 @@ public class Datenberechnung {
                 groesste[3] = groesste[2];
                 groesste[2] = groesste[1];
                 groesste[1] = tmp;
+            }else if (tmp.getAbstand() < groesste[2].getAbstand()) {
+                groesste[4] = groesste[3];
+                groesste[3] = groesste[2];
+                groesste[2] = tmp;
+            }else if (tmp.getAbstand() < groesste[3].getAbstand()) {
+                groesste[4] = groesste[3];
+                groesste[3] = tmp;
+            }else if (tmp.getAbstand() < groesste[4].getAbstand()) {
+                groesste[4] = tmp;
             }
-            /**
-             * Muster weiterführen bis du auf else if(tmp.getAbstand() < groesste[4].getAbstand()) kommst ;) wenn du nicht weißt wie du das machen sollst dann machen wir das zusammen.
-             */
+
         }
         return groesste;
     }

@@ -1,13 +1,17 @@
 package com.example.gps40;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_FINE_LOCATION = 99;
     public TextView  text_addresse;
     TextView ausgabe1;
+    Button n1,n2,n3,n4,n5;
+    public Haltestellen_Koordinaten[] naehste;
 
     public Switch sw_locationsupdates;
 
@@ -49,12 +55,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         text_addresse = findViewById(R.id.text_addresse);
         sw_locationsupdates = findViewById(R.id.sw_locationsupdates);
         ausgabe1 = findViewById(R.id.ausgabe1);
+        n1 = findViewById(R.id.button10);
+        n2 = findViewById(R.id.button9);
+        n3 = findViewById(R.id.button8);
+        n4 = findViewById(R.id.button7);
+        n5 = findViewById(R.id.button6);
+
 
 
 
@@ -166,10 +180,14 @@ public class MainActivity extends AppCompatActivity {
         this.lathandy = location.getLatitude();
         this.lonhandy = location.getLongitude();
         ausgabe1.setText(String.valueOf(lathandy) + "  " + String.valueOf(lonhandy) + "\n");
-        Haltestellen_Koordinaten[] naehste = datenliste.berechnung(lathandy, lonhandy);
-        for(int i = 0; i<5; i++){
-            ausgabe1.append(naehste[i].getName() + "\n");
-        }
+        naehste = datenliste.berechnung(lathandy, lonhandy);
+        n1.setText(naehste[0].getName());
+        n2.setText(naehste[1].getName());
+        n3.setText(naehste[2].getName());
+        n4.setText(naehste[3].getName());
+        n5.setText(naehste[4].getName());
+
+
 
         Geocoder geocoder = new Geocoder(MainActivity.this);
         try {
@@ -185,6 +203,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void link1(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[0].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link2(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[1].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link3(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[2].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link4(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[3].getLink()));
+        startActivity(browserIntent);
+    }
+
+    public void link5(View view){
+        Intent browserIntent= new Intent(Intent.ACTION_VIEW, Uri.parse(naehste[4].getLink()));
+        startActivity(browserIntent);
+    }
+
 
     public double getLathandy() {
         return lathandy;
@@ -193,4 +236,5 @@ public class MainActivity extends AppCompatActivity {
     public double getLonhandy() {
         return lonhandy;
     }
+
 }
