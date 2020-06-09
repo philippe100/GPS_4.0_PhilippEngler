@@ -45,24 +45,11 @@
         app:layout_constraintStart_toEndOf="@+id/text_addresse"
         app:layout_constraintTop_toTopOf="@+id/text_addresse" />
 
-    <TextView
-        android:id="@+id/ausgabe1"
-        android:layout_width="269dp"
-        android:layout_height="52dp"
-        android:text="TextView"
-        android:textColor="#F6F3F3"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.751"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_addresse"
-        app:layout_constraintVertical_bias="0.995" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="373dp"
         android:layout_height="332dp"
+        android:background="@drawable/textview_border"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,5 +148,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.971" />
+
+    <TextView
+        android:id="@+id/ausgabe1"
+        android:layout_width="269dp"
+        android:layout_height="52dp"
+        android:text="TextView"
+        android:textColor="#F6F3F3"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.741" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

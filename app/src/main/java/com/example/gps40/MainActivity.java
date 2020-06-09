@@ -117,8 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         text_addresse.setText("Aktuelle Aderesse:\nGPS zugriff anschalten");
-
         fusedLocationProviderClient.removeLocationUpdates(locationCallBack);
+        ausgabe1.setText(" ");
+
 
     }
 
@@ -180,37 +181,37 @@ public class MainActivity extends AppCompatActivity {
         //Texte werden geupdated.
         this.lathandy = location.getLatitude();
         this.lonhandy = location.getLongitude();
-        ausgabe1.setText(String.valueOf(lathandy) + "         " + String.valueOf(lonhandy) + "\n");
+        ausgabe1.setText("    " +String.valueOf(lathandy) + "    " + String.valueOf(lonhandy) + "\n");
         naehste = datenliste.berechnung(lathandy, lonhandy);
         double eins = naehste[0].getAbstand();
-        eins = Math.round(eins * 1000)/1000.00;
+        eins = Math.round(eins * 100)/100.00;
         n1.setText(naehste[0].getName() + "      " + eins + " km");
         double zwei = naehste[1].getAbstand();
-        zwei = Math.round(zwei * 1000)/1000.00;
+        zwei = Math.round(zwei * 100)/100.00;
         n2.setText(naehste[1].getName()+ "    " + zwei + " km");
         double drei = naehste[2].getAbstand();
-        drei = Math.round(drei * 1000)/1000.00;
+        drei = Math.round(drei * 100)/100.00;
         n3.setText(naehste[2].getName()+ "     " + drei + " km");
         double vier = naehste[3].getAbstand();
-        vier = Math.round(vier * 1000)/1000.00;
+        vier = Math.round(vier * 100)/100.00;
         n4.setText(naehste[3].getName()+ "     " + vier + " km");
-        double fünf = naehste[4].getAbstand();
-        fünf = Math.round(fünf * 1000)/1000.00;
-        n5.setText(naehste[4].getName()+ "    " + fünf + " km");
+        double fuenf = naehste[4].getAbstand();
+        fuenf = Math.round(fuenf * 100)/100.00;
+        n5.setText(naehste[4].getName()+ "    " + fuenf + " km");
         double sechs = naehste[5].getAbstand();
-        sechs = Math.round(sechs * 1000)/1000.00;
+        sechs = Math.round(sechs * 100)/100.00;
         n6.setText(naehste[5].getName()+ "   " + sechs + " km");
         double sieben = naehste[6].getAbstand();
-        sieben = Math.round(sieben * 1000)/1000.00;
+        sieben = Math.round(sieben * 100)/100.00;
         n7.setText(naehste[6].getName()+ "   " + sieben + " km");
         double acht = naehste[7].getAbstand();
-        acht = Math.round(acht * 1000)/1000.00;
+        acht = Math.round(acht * 100)/100.00;
         n8.setText(naehste[7].getName()+ "    " + acht + " km");
         double neun  = naehste[8].getAbstand();
-        neun = Math.round(neun * 1000)/1000.00;
+        neun = Math.round(neun * 100)/100.00;
         n9.setText(naehste[8].getName()+ "    " + neun + " km");
         double zehn = naehste[9].getAbstand();
-        zehn = Math.round(zehn * 1000)/1000.00;
+        zehn = Math.round(zehn * 100)/100.00;
         n10.setText(naehste[9].getName()+ "    " + zehn + " km");
 
 
